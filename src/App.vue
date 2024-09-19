@@ -1,11 +1,15 @@
 <script setup>
 import TopNav from '@/components/TopNav.vue';
 import Carousel from '@/components/Carousel.vue';
+import MainStore from '@/components/mainStore/MainStore.vue';
 </script>
 
-<template class="main">
-  <TopNav/>
-  <Carousel/>
+<template>
+  <div class="main">
+    <TopNav/>
+    <Carousel/>
+    <MainStore/>
+  </div>
 </template>
 
 <style scoped>

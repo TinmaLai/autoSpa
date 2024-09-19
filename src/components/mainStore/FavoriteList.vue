@@ -1,0 +1,164 @@
+<template>
+    <div class="favorite-list">
+        <div class="top-header">
+            <div class="header-text">SẢN PHẨM NỔI BẬT</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dots">•••</div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+        <div class="slide-list">
+            <div class="slide-item" v-for="(item, index) in items" :key="index">
+                <div class="name-item">
+                    {{ item.name }}
+                </div>
+                <div class="img-item">
+                    <img :src="item.url"/>
+                </div>
+                <div class="original-price-item">
+                    {{ item.originalPrice }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.saleOffPrice }}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    name:'FavoriteList',
+    setup(props) {
+        var items = [
+            {
+                name: "ALL WHEEL BRIGHTENER",
+                url: "/src/assets/favoriteItems/favorite-item-0.jpg",
+                originalPrice: 400000,
+                saleOffPrice: 350000,
+                saleOffPercent: 13
+            },
+            {
+                name: "CERAMIX LIQUID WAX",
+                url: "/src/assets/favoriteItems/favorite-item-1.jpg",
+                originalPrice: 790000,
+                saleOffPrice: 690000,
+                saleOffPercent: 13
+            },
+            {
+                name: "CHAI XỊT VỆ SINH NHỰA",
+                url: "/src/assets/favoriteItems/favorite-item-2.jpg",
+                originalPrice: 385000,
+                saleOffPrice: 299000,
+                saleOffPercent: 22
+            },
+            {
+                name: "DA FOAM CUTTING DISC",
+                url: "/src/assets/favoriteItems/favorite-item-3.jpg",
+                originalPrice: 450000,
+                saleOffPrice: 450000,
+                saleOffPercent: 0
+            },
+            {
+                name: "DUNG DỊCH LÀM SẠCH",
+                url: "/src/assets/favoriteItems/favorite-item-4.jpg",
+                originalPrice: 1010000,
+                saleOffPrice: 1010000,
+                saleOffPercent: 0
+            },
+            {
+                name: "DUNG DỊCH LÀM SẠCH",
+                url: "/src/assets/favoriteItems/favorite-item-5.jpg",
+                originalPrice: 1020000,
+                saleOffPrice: 1020000,
+                saleOffPercent: 0
+            },
+            {
+                name: "DUNG DỊCH RỬA XE HYPER",
+                url: "/src/assets/favoriteItems/favorite-item-6.jpg",
+                originalPrice: 1140000,
+                saleOffPrice: 1140000,
+                saleOffPercent: 0
+            },
+            {
+                name: "DUNG DỊCH ĐA NĂNG",
+                url: "/src/assets/favoriteItems/favorite-item-7.jpg",
+                originalPrice: 900000,
+                saleOffPrice: 900000,
+                saleOffPercent: 0
+            },
+
+        ];
+        return {
+            items
+        };
+    }
+};
+</script>
+<style lang="scss">
+.favorite-list{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: 100%;
+    .top-header{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .slide-list{
+        display: flex;
+        gap: 3px;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        justify-content: space-between;
+        .slide-item{
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .name-item{
+                background-color: #ffc107;
+                color: black;
+                height: 10%;
+                padding: 2px;
+                text-align: center;
+                font-size: 12px;
+            }
+            .img-item{
+                height: 60%;
+                img{
+                    height: 100%;
+                }
+            }
+            .original-price-item{
+                color: gray;
+            }
+            .sale-off-price-item{
+                color: red;
+            }
+        }
+    }
+}
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.divider-line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: black;
+}
+
+.divider-dots {
+    margin: 0 10px;
+    font-size: 20px;
+    color: black;
+}
+</style>
