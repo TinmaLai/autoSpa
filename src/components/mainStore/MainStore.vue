@@ -16,10 +16,9 @@ export default {
 </script>
 <style lang="scss">
 .main-store{
-    padding: 0 200px 0 200px;
+    padding: 50px 200px 0 200px;
     display: flex;
     flex-direction: column;
-    height: 306px;
     background-color: black;
 }
 </style>

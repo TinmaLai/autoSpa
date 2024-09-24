@@ -98,28 +98,32 @@ export default {
 <style lang="scss">
 .favorite-list{
     width: 100%;
-    height: 200px;
     display: flex;
     flex-direction: column;
     justify-items: center;
     height: 100%;
+    align-items: center;
     .top-header{
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 16px;
     }
     .slide-list{
         display: flex;
-        gap: 3px;
-        width: 100%;
+        gap: 8px;
+        width: 1200px;
         height: 100%;
-        overflow-x: hidden;
-        justify-content: space-between;
+        overflow-x: auto;
         .slide-item{
-            width: 180px;
+            flex: 0 0 174px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 8px;
             .name-item{
                 background-color: #ffc107;
                 color: black;
@@ -127,11 +131,14 @@ export default {
                 padding: 2px;
                 text-align: center;
                 font-size: 12px;
+                width: 100%;
             }
             .img-item{
                 height: 60%;
+                width: 100%;
                 img{
                     height: 100%;
+                    width: 100%;
                 }
             }
             .original-price-item{
@@ -147,18 +154,18 @@ export default {
     display: flex;
     align-items: center;
     text-align: center;
-    width: 100%;
+    width: 50%;
 }
 
 .divider-line {
     flex-grow: 1;
     height: 1px;
-    background-color: black;
+    background-color: white;
 }
 
 .divider-dots {
     margin: 0 10px;
     font-size: 20px;
-    color: black;
+    color: white;
 }
 </style>
