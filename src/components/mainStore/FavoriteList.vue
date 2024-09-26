@@ -153,7 +153,7 @@ export default {
         display: flex;
         align-items: center;
         text-align: center;
-        width: 50%;
+        width: 500px;
     }
     
     .divider-line {

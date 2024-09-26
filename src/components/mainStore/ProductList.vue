@@ -1,20 +1,21 @@
 <template>
     <div class="product-list">
         <div class="top-header">
-            <div class="header-text">SẢN PHẨM NỔI BẬT</div>
+            <div class="header-text">★ BƯỚC 1: RỬA XE ★</div>
             <div class="divider">
                 <div class="divider-line"></div>
                 <div class="divider-dots">•••</div>
                 <div class="divider-line"></div>
             </div>
         </div>
-        <div class="slide-list">
-            <div class="slide-item" v-for="(item, index) in items" :key="index">
-                <div class="name-item">
-                    {{ item.name }}
-                </div>
+        <div class="list">
+            <div class="item" v-for="(item, index) in items" :key="index">
+                
                 <div class="img-item">
                     <img :src="item.url"/>
+                </div>
+                <div class="name-item">
+                    {{ item.name }}
                 </div>
                 <div class="original-price-item">
                     {{ item.originalPrice }}
@@ -33,28 +34,28 @@ export default {
         var items = [
             {
                 name: "ALL WHEEL BRIGHTENER",
-                url: "/src/assets/favoriteItems/favorite-item-0.jpg",
+                url: "/src/assets/productList/product-list-0.jpg",
                 originalPrice: 400000,
                 saleOffPrice: 350000,
                 saleOffPercent: 13
             },
             {
                 name: "CERAMIX LIQUID WAX",
-                url: "/src/assets/favoriteItems/favorite-item-1.jpg",
+                url: "/src/assets/productList/product-list-1.jpg",
                 originalPrice: 790000,
                 saleOffPrice: 690000,
                 saleOffPercent: 13
             },
             {
                 name: "CHAI XỊT VỆ SINH NHỰA",
-                url: "/src/assets/favoriteItems/favorite-item-2.jpg",
+                url: "/src/assets/productList/product-list-2.jpg",
                 originalPrice: 385000,
                 saleOffPrice: 299000,
                 saleOffPercent: 22
             },
             {
                 name: "DA FOAM CUTTING DISC",
-                url: "/src/assets/favoriteItems/favorite-item-3.jpg",
+                url: "/src/assets/productList/product-list-3.jpg",
                 originalPrice: 450000,
                 saleOffPrice: 450000,
                 saleOffPercent: 0
@@ -112,29 +113,28 @@ export default {
         font-weight: 700;
         margin-bottom: 16px;
     }
-    .slide-list{
+    .list{
         display: flex;
         gap: 8px;
         width: 1200px;
         height: 100%;
-        overflow-x: auto;
-        .slide-item{
-            flex: 0 0 174px;
+        overflow-x: hidden;
+        .item{
             display: flex;
+            flex: 0 0 25%;
             flex-direction: column;
             align-items: center;
             gap: 8px;
             .name-item{
-                background-color: #ffc107;
-                color: black;
+                color: white;
                 height: 10%;
                 padding: 2px;
                 text-align: center;
-                font-size: 12px;
+                font-size: 14px;
                 width: 100%;
             }
             .img-item{
-                height: 60%;
+                height: 75%;
                 width: 100%;
                 img{
                     height: 100%;
@@ -153,7 +153,7 @@ export default {
         display: flex;
         align-items: center;
         text-align: center;
-        width: 50%;
+        width: 500px;
     }
     
     .divider-line {

@@ -1,5 +1,10 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue';
 import './style.css'
-import App from './App.vue'
+import App from './App.vue';
+import { VueFinalModal } from 'vue-final-modal';
 
-createApp(App).mount('#app')
+
+const app = createApp(App);
+// Đăng ký Vue Final Modal
+app.use(VueFinalModal);
+app.mount('#app');
