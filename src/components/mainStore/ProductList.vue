@@ -1,5 +1,5 @@
 <template>
-    <div class="favorite-list">
+    <div class="product-list">
         <div class="top-header">
             <div class="header-text">SẢN PHẨM NỔI BẬT</div>
             <div class="divider">
@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-    name:'FavoriteList',
+    name:'ProductList',
     setup(props) {
         var items = [
             {
@@ -96,7 +96,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.favorite-list{
+.product-list{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -117,7 +117,7 @@ export default {
         gap: 8px;
         width: 1200px;
         height: 100%;
-        overflow-x: hidden;
+        overflow-x: auto;
         .slide-item{
             flex: 0 0 174px;
             display: flex;
@@ -167,5 +167,5 @@ export default {
         font-size: 20px;
         color: white;
     }
-    }
+}
 </style>

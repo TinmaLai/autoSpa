@@ -1,13 +1,16 @@
 <template>
     <div class="main-store">
         <FavoriteList/>
+        <ProductList/>
     </div>
 </template>
 <script>
 import FavoriteList from '@/components/mainStore/FavoriteList.vue';
+import ProductList from '@/components/mainStore/ProductList.vue';
 export default {
     components:{
-        FavoriteList
+        FavoriteList,
+        ProductList
     },
     setup(props) {
         
