@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="slide-list">
-            <div class="slide-item" v-for="(item, index) in items" :key="index">
+            <div @click="goToDetail" class="slide-item" v-for="(item, index) in items" :key="index">
                 <div class="name-item">
                     {{ item.name }}
                 </div>
@@ -27,9 +27,12 @@
     </div>
 </template>
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
     name:'FavoriteList',
     setup(props) {
+        const router = useRouter();
         var items = [
             {
                 name: "ALL WHEEL BRIGHTENER",
@@ -89,8 +92,12 @@ export default {
             },
 
         ];
+        function goToDetail(){
+            router.push({ name: 'product-detail' });
+        }
         return {
-            items
+            items,
+            goToDetail
         };
     }
 };

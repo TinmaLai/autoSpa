@@ -2,6 +2,8 @@
 import TopNav from '@/components/TopNav.vue';
 import Carousel from '@/components/Carousel.vue';
 import MainStore from '@/components/mainStore/MainStore.vue';
+import ProductDetail from '@/components/details/ProductDetail.vue';
+
 </script>
 
 <template>
@@ -9,6 +11,8 @@ import MainStore from '@/components/mainStore/MainStore.vue';
     <TopNav/>
     <Carousel/>
     <MainStore/>
+    <router-view></router-view>
+    <!-- <ProductDetail/> -->
   </div>
 </template>
 
