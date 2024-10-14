@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .top-nav {
   height: 125px;
-  background-color: black;
+  background-color: brown;
   width: 100vw;
   position: fixed;
   top: 0;
