@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - AutoSpa
 
 on:
@@ -21,10 +24,11 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          NODE_ENV=production npm run build --if-present
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./dist
+        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -39,7 +43,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # This is required for requesting the JWT
+      id-token: write #This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -49,17 +53,19 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_187D2D2E038F440AB34EFFDE7C7F3248 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F47E32901FF548858F4F9633F8572C56 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_729C2972FC39494688F994467D414995 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_57E9D0317665483E9AD6A128428163DC }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F8F6ABBAE3954FB1B8DEC3631F080BC5 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BCBE5C63F30C42CABB87469C8CD9444D }}
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'AutoSpa'
-          package: './dist'
+          slot-name: 'Production'
+          package: .
+          
