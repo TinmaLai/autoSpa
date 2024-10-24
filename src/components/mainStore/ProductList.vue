@@ -28,68 +28,75 @@
     </div>
 </template>
 <script>
+import { onMounted } from 'vue';
+import productApi from '@/apis/productApi.js';
+
 export default {
     name:'ProductList',
     setup(props) {
-        var items = [
-            {
-                name: "ALL WHEEL BRIGHTENER",
-                url: "/src/assets/productList/product-list-0.jpg",
-                originalPrice: 400000,
-                saleOffPrice: 350000,
-                saleOffPercent: 13
-            },
-            {
-                name: "CERAMIX LIQUID WAX",
-                url: "/src/assets/productList/product-list-1.jpg",
-                originalPrice: 790000,
-                saleOffPrice: 690000,
-                saleOffPercent: 13
-            },
-            {
-                name: "CHAI XỊT VỆ SINH NHỰA",
-                url: "/src/assets/productList/product-list-2.jpg",
-                originalPrice: 385000,
-                saleOffPrice: 299000,
-                saleOffPercent: 22
-            },
-            {
-                name: "DA FOAM CUTTING DISC",
-                url: "/src/assets/productList/product-list-3.jpg",
-                originalPrice: 450000,
-                saleOffPrice: 450000,
-                saleOffPercent: 0
-            },
-            {
-                name: "DUNG DỊCH LÀM SẠCH",
-                url: "/src/assets/favoriteItems/favorite-item-4.jpg",
-                originalPrice: 1010000,
-                saleOffPrice: 1010000,
-                saleOffPercent: 0
-            },
-            {
-                name: "DUNG DỊCH LÀM SẠCH",
-                url: "/src/assets/favoriteItems/favorite-item-5.jpg",
-                originalPrice: 1020000,
-                saleOffPrice: 1020000,
-                saleOffPercent: 0
-            },
-            {
-                name: "DUNG DỊCH RỬA XE HYPER",
-                url: "/src/assets/favoriteItems/favorite-item-6.jpg",
-                originalPrice: 1140000,
-                saleOffPrice: 1140000,
-                saleOffPercent: 0
-            },
-            {
-                name: "DUNG DỊCH ĐA NĂNG",
-                url: "/src/assets/favoriteItems/favorite-item-7.jpg",
-                originalPrice: 900000,
-                saleOffPrice: 900000,
-                saleOffPercent: 0
-            },
+        var items = [];
+        onMounted(async () =>  {
+            items = await productApi.getProducts();
+        })
+        // var items = [
+        //     {
+        //         name: "ALL WHEEL BRIGHTENER",
+        //         url: "/src/assets/productList/product-list-0.jpg",
+        //         originalPrice: 400000,
+        //         saleOffPrice: 350000,
+        //         saleOffPercent: 13
+        //     },
+        //     {
+        //         name: "CERAMIX LIQUID WAX",
+        //         url: "/src/assets/productList/product-list-1.jpg",
+        //         originalPrice: 790000,
+        //         saleOffPrice: 690000,
+        //         saleOffPercent: 13
+        //     },
+        //     {
+        //         name: "CHAI XỊT VỆ SINH NHỰA",
+        //         url: "/src/assets/productList/product-list-2.jpg",
+        //         originalPrice: 385000,
+        //         saleOffPrice: 299000,
+        //         saleOffPercent: 22
+        //     },
+        //     {
+        //         name: "DA FOAM CUTTING DISC",
+        //         url: "/src/assets/productList/product-list-3.jpg",
+        //         originalPrice: 450000,
+        //         saleOffPrice: 450000,
+        //         saleOffPercent: 0
+        //     },
+        //     {
+        //         name: "DUNG DỊCH LÀM SẠCH",
+        //         url: "/src/assets/favoriteItems/favorite-item-4.jpg",
+        //         originalPrice: 1010000,
+        //         saleOffPrice: 1010000,
+        //         saleOffPercent: 0
+        //     },
+        //     {
+        //         name: "DUNG DỊCH LÀM SẠCH",
+        //         url: "/src/assets/favoriteItems/favorite-item-5.jpg",
+        //         originalPrice: 1020000,
+        //         saleOffPrice: 1020000,
+        //         saleOffPercent: 0
+        //     },
+        //     {
+        //         name: "DUNG DỊCH RỬA XE HYPER",
+        //         url: "/src/assets/favoriteItems/favorite-item-6.jpg",
+        //         originalPrice: 1140000,
+        //         saleOffPrice: 1140000,
+        //         saleOffPercent: 0
+        //     },
+        //     {
+        //         name: "DUNG DỊCH ĐA NĂNG",
+        //         url: "/src/assets/favoriteItems/favorite-item-7.jpg",
+        //         originalPrice: 900000,
+        //         saleOffPrice: 900000,
+        //         saleOffPercent: 0
+        //     },
 
-        ];
+        // ];
         return {
             items
         };
