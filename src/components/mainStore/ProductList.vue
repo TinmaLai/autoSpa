@@ -9,34 +9,38 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items" :key="index">
+            <div class="item" v-for="(item, index) in items" :key="index" @click="showDetail(item.product_id)">
                 
                 <div class="img-item">
-                    <img :src="item.url"/>
+                    <img :src="item.imageUrl"/>
                 </div>
                 <div class="name-item">
-                    {{ item.name }}
+                    {{ item.product_name }}
                 </div>
                 <div class="original-price-item">
-                    {{ item.originalPrice }}
+                    {{ item.product_original_price }}
                 </div>
                 <div class="sale-off-price-item">
-                    {{ item.saleOffPrice }}
+                    {{ item.product_sale_price }}
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import { onMounted } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import productApi from '@/apis/productApi.js';
+import  {useBaseList} from '../base/baseList.js';
 
 export default {
     name:'ProductList',
     setup(props) {
-        var items = [];
+        // gọi composable base
+        const baseList = useBaseList(productApi); 
+
+        const items = ref([]);
         onMounted(async () =>  {
-            items = await productApi.getProducts();
+            items.value = await productApi.getProducts();
         })
         // var items = [
         //     {
@@ -98,7 +102,8 @@ export default {
 
         // ];
         return {
-            items
+            items,
+            ...baseList
         };
     }
 };

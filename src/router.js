@@ -9,8 +9,8 @@ const routes = [
     component: () => import('@/components/Home.vue'),
   },
   {
-    path: '/product-detail',
-    name: 'product-detail',
+    path: '/product-detail/:id',
+    name: 'productDetail',
     component: () => import('@/components/details/ProductDetail.vue'),
   },
 ];
