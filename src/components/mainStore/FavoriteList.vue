@@ -1,5 +1,6 @@
 <template>
     <div class="favorite-list">
+        
         <div class="top-header">
             <div class="header-text">SẢN PHẨM NỔI BẬT</div>
             <div class="divider">
@@ -21,6 +22,10 @@
                 </div>
                 <div class="sale-off-price-item">
                     {{ item.saleOffPrice }}
+                </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
                 </div>
             </div>
         </div>
@@ -120,14 +125,10 @@ export default {
         margin-bottom: 16px;
     }
     .slide-list{
-        display: flex;
-        gap: 8px;
-        width: 1200px;
-        height: 100%;
-        overflow-x: hidden;
         .slide-item{
             flex: 0 0 174px;
             display: flex;
+            position: relative;
             flex-direction: column;
             align-items: center;
             gap: 8px;
@@ -153,6 +154,22 @@ export default {
             }
             .sale-off-price-item{
                 color: red;
+            }
+            .item-action{
+                .edit-item-btn{
+                    background-color: yellow;
+                    color: white;
+                    padding: 5px;
+                    width: auto;
+                    height: auto;
+                }
+                .delete-item-btn{
+                    background-color: red;
+                    color: black;
+                    padding: 5px;
+                    width: auto;
+                    height: auto;
+                }
             }
         }
     }

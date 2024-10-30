@@ -23,6 +23,10 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
+                </div>
             </div>
         </div>
     </div>
@@ -158,6 +162,23 @@ export default {
             }
             .sale-off-price-item{
                 color: red;
+            }
+            .item-action{
+                display: flex;
+                gap: 10px;
+                position: absolute;
+                top: -10px;
+                right: 0px;
+                .edit-item-btn{
+                    background-color: yellow;
+                    color: white;
+                    padding: 5px;
+                }
+                .delete-item-btn{
+                    background-color: red;
+                    color: black;
+                    padding: 5px;
+                }
             }
         }
     }

@@ -1,7 +1,9 @@
 <template>
     <div class="main-store">
-        <FavoriteList/>
-        <ProductList/>
+        <div class="container">
+            <FavoriteList/>
+            <ProductList/>
+        </div>
     </div>
 </template>
 <script>
@@ -19,9 +21,12 @@ export default {
 </script>
 <style lang="scss">
 .main-store{
-    padding: 50px 200px 0 200px;
-    display: flex;
-    flex-direction: column;
+    
     background-color: black;
+}
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto; 
 }
 </style>
