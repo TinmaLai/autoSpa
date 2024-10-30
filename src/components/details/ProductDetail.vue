@@ -1,13 +1,16 @@
 <template>
   <div class="product-detail">
     <div class="product-detail-container">
-        <div class="title">{{ product.product_name }}</div>
+        <div class="title"><input class="styled-input" :value="product.product_name"></div>
         <div class="product-content">
             <div class="product-image">
                 <img :src="product.imageUrl" alt="Product Image" />
             </div>
             <div class="product-description">
-                <div class="product-detail-price">Giá: <span class="origin-price">{{product.product_original_price}} VNĐ</span><span class="sale-price">{{product.product_sale_price}} VNĐ</span></div>
+                <div class="product-detail-price">
+                  Giá: <span class="origin-price"><input class="styled-input" :value="product.product_original_price"> VNĐ</span>
+                  <span class="sale-price"><input class="styled-input" :value="product.product_sale_price"> VNĐ</span>
+                </div>
                 <div class="description-panel">
                     <div class="description-tabs">
                         <div @click="setActiveTab(0)" class="des-tab" :class="{ active: activeTab}">MÔ TẢ</div>
@@ -70,9 +73,11 @@ export default {
     padding: 20px;
     color: white;
     .title{
-        color: #ffc107;
-        font-size: 22px;
-        margin-bottom: 16px;
+        input{
+          color: #ffc107;
+          font-size: 22px;
+          margin-bottom: 16px;
+        }
     }
     .product-description {
         flex: 1;
@@ -117,6 +122,30 @@ export default {
         }
     }
     
+  }
+  /* Style cho ô input */
+  .styled-input {
+    width: auto;
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Viền mờ trong suốt */
+    background-color: rgba(255, 255, 255, 0.1); /* Nền trong suốt nhẹ */
+    color: #ffffff; /* Màu chữ trắng */
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+  }
+
+  /* Hiệu ứng khi hover và focus */
+  .styled-input:hover,
+  .styled-input:focus {
+      border-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Placeholder style */
+  .styled-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
   }
   
 }
