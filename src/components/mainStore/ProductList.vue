@@ -29,6 +29,122 @@
                 </div>
             </div>
         </div>
+        <div class="top-header">
+            <div class="header-text">★ BƯỚC 2: SẢN PHẨM LÀM SẠCH XÓA XƯỚC BỀ MẶT SƠN ★</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dots">•••</div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
+                
+                <div class="img-item">
+                    <img :src="item.imageUrl"/>
+                </div>
+                <div class="name-item">
+                    {{ item.product_name }}
+                </div>
+                <div class="original-price-item">
+                    {{ item.product_original_price }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.product_sale_price }}
+                </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
+                </div>
+            </div>
+        </div>
+        <div class="top-header">
+            <div class="header-text">★ BƯỚC 3: WAX BÓNG BẢO VỆ SƠN ★</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dots">•••</div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
+                
+                <div class="img-item">
+                    <img :src="item.imageUrl"/>
+                </div>
+                <div class="name-item">
+                    {{ item.product_name }}
+                </div>
+                <div class="original-price-item">
+                    {{ item.product_original_price }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.product_sale_price }}
+                </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
+                </div>
+            </div>
+        </div>
+        <div class="top-header">
+            <div class="header-text">★ BỘ SẢN PHẨM CHĂM SÓC XE ★</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dots">•••</div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
+                
+                <div class="img-item">
+                    <img :src="item.imageUrl"/>
+                </div>
+                <div class="name-item">
+                    {{ item.product_name }}
+                </div>
+                <div class="original-price-item">
+                    {{ item.product_original_price }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.product_sale_price }}
+                </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
+                </div>
+            </div>
+        </div>
+        <div class="top-header">
+            <div class="header-text">★ DUNG DICH CHĂM SÓC XE ★</div>
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-dots">•••</div>
+                <div class="divider-line"></div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
+                
+                <div class="img-item">
+                    <img :src="item.imageUrl"/>
+                </div>
+                <div class="name-item">
+                    {{ item.product_name }}
+                </div>
+                <div class="original-price-item">
+                    {{ item.product_original_price }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.product_sale_price }}
+                </div>
+                <div class="item-action">
+                    <div class="edit-item-btn">Sửa</div>
+                    <div class="delete-item-btn">Xóa</div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -55,7 +171,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -63,7 +180,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -71,7 +189,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -79,7 +198,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -87,7 +207,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -95,7 +216,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -103,7 +225,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -111,7 +234,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             },
             {
                 product_id: Math.random(),
@@ -119,7 +243,8 @@ export default {
                 imageUrl: proxy.$pl.pImage,
                 product_original_price: proxy.$pl.pOPrice,
                 product_sale_price: proxy.$pl.pSPrice,
-                saleOffPercent: proxy.$pl.pPercent
+                saleOffPercent: proxy.$pl.pPercent,
+                step: 2
             }
         ];
         return {
@@ -152,6 +277,7 @@ export default {
         width: 1200px;
         height: 100%;
         overflow-x: hidden;
+        margin-bottom: 16px;
         .item{
             display: flex;
             flex: 0 0 25%;
