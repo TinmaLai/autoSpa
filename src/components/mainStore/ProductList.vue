@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items" :key="index" @click="showDetail(item.product_id)">
-                
+            <div class="item" v-for="(item, index) in items" :key="index" @click="showDetail(item.product_id)" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+                <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
                 <div class="img-item">
                     <img :src="item.imageUrl"/>
                 </div>
@@ -23,7 +23,7 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
-                <div class="item-action">
+                <div class="item-action" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }">
                     <div class="edit-item-btn">Sửa</div>
                     <div class="delete-item-btn">Xóa</div>
                 </div>
@@ -38,8 +38,8 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
-                
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+                <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
                 <div class="img-item">
                     <img :src="item.imageUrl"/>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
-                <div class="item-action">
+                <div class="item-action" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }">
                     <div class="edit-item-btn">Sửa</div>
                     <div class="delete-item-btn">Xóa</div>
                 </div>
@@ -67,8 +67,8 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
-                
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+                <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
                 <div class="img-item">
                     <img :src="item.imageUrl"/>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
-                <div class="item-action">
+                <div class="item-action" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }">
                     <div class="edit-item-btn">Sửa</div>
                     <div class="delete-item-btn">Xóa</div>
                 </div>
@@ -96,8 +96,8 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
-                
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+                <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
                 <div class="img-item">
                     <img :src="item.imageUrl"/>
                 </div>
@@ -110,7 +110,7 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
-                <div class="item-action">
+                <div class="item-action" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }">
                     <div class="edit-item-btn">Sửa</div>
                     <div class="delete-item-btn">Xóa</div>
                 </div>
@@ -125,8 +125,8 @@
             </div>
         </div>
         <div class="list">
-            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)">
-                
+            <div class="item" v-for="(item, index) in items.filter(x => x.step == 2)" :key="index" @click="showDetail(item.product_id)" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+                <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
                 <div class="img-item">
                     <img :src="item.imageUrl"/>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="sale-off-price-item">
                     {{ item.product_sale_price }}
                 </div>
-                <div class="item-action">
+                <div class="item-action" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }">
                     <div class="edit-item-btn">Sửa</div>
                     <div class="delete-item-btn">Xóa</div>
                 </div>
@@ -247,9 +247,12 @@ export default {
                 step: 2
             }
         ];
+        const idHover = ref(null);
+
         return {
             items,
-            ...baseList
+            ...baseList,
+            idHover,
         };
     }
 };
@@ -280,10 +283,25 @@ export default {
         margin-bottom: 16px;
         .item{
             display: flex;
-            flex: 0 0 25%;
+            flex: 0 0 24.5%;
             flex-direction: column;
             align-items: center;
             gap: 8px;
+            position: relative;
+            cursor: pointer;
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                box-shadow: 
+        inset 0 0 15px rgba(255, 80, 0, 1),    /* Lớp cam đậm */
+        inset 0 0 30px rgba(255, 120, 0, 0.9), /* Lớp cam sáng hơn */
+        inset 0 0 50px rgba(255, 180, 0, 0.7), /* Lớp vàng mạnh hơn */
+        inset 0 0 80px rgba(255, 255, 0, 0.5); /* Lớp vàng lan tỏa */
+                pointer-events: none; /* Cho phép nhấp vào ảnh mà không bị lớp phủ chặn */
+            }
             .name-item{
                 color: white;
                 height: 10%;
@@ -309,9 +327,6 @@ export default {
             .item-action{
                 display: flex;
                 gap: 10px;
-                position: absolute;
-                top: -10px;
-                right: 0px;
                 .edit-item-btn{
                     background-color: yellow;
                     color: white;
@@ -342,6 +357,12 @@ export default {
         margin: 0 10px;
         font-size: 20px;
         color: white;
+    }
+    .opacity-1{
+        opacity: 1;
+    }
+    .opacity-0{
+        opacity: 0;
     }
 }
 </style>

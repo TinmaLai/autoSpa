@@ -16,7 +16,7 @@
         class="slide-list"
         >
         <!-- :autoplay="{ delay: 3000, disableOnInteraction: false }" -->
-            <swiper-slide v-for="(item, index) in items" :key="index" click="goToDetail" class="slide-item" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+            <swiper-slide v-for="(item, index) in items" :key="index" @click="showDetail(item.product_id)" class="slide-item" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
                 <div class="name-item">
                     {{ item.product_name }}
                 </div>
@@ -43,6 +43,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import 'swiper/css';
 import { Autoplay } from 'swiper/modules';
 import {ref, getCurrentInstance} from 'vue';
+import  {useBaseList} from '../base/baseList.js';
+import productApi from '@/apis/productApi.js';
 
 export default {
     name:'FavoriteList',
@@ -51,6 +53,8 @@ export default {
         SwiperSlide,
     },
     setup(props) {
+        // gọi composable base
+        const baseList = useBaseList(productApi); 
         const router = useRouter();
 
         const { proxy } = getCurrentInstance();
@@ -130,14 +134,12 @@ export default {
             }
         ];
         const idHover = ref(null);
-        function goToDetail(){
-            router.push({ name: 'product-detail' });
-        }
         return {
             items,
-            goToDetail,
             Autoplay,
             idHover,
+            ...baseList,
+            productApi,
         };
     }
 };
