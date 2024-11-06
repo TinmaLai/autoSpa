@@ -5,6 +5,20 @@
         <div class="product-content">
             <div class="product-image">
                 <img :src="product.imageUrl" alt="Product Image" />
+                <div class="product-image-details">
+                  <img class="detail-item" :src="product.imageUrl" alt="Product Image" />
+                  <img class="detail-item" :src="product.imageUrl" alt="Product Image" />
+                  <img class="detail-item" :src="product.imageUrl" alt="Product Image" />
+                </div>
+                <div class="buy-container">
+                  <div class="input-section">
+                    <span for="quantity">Số lượng:</span>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                  </div>
+                  <div class="button-section">
+                    <button class="buy-button">Mua hàng</button>
+                  </div>
+                </div>
             </div>
             <div class="product-description">
                 <div class="product-detail-price">
@@ -17,17 +31,40 @@
                         <div @click="setActiveTab(1)" class="specifies-tab" :class="{ active: !activeTab}">THÔNG SỐ</div>
                     </div>
                     <div class="description-body">
-                        {{activeTab ? product.product_description : product.specifies}}
+                        {{activeTab ? product.product_description : product.product_specifies}}
                     </div>
                 </div>
             </div>
+            
+        </div>
+        <div class="related-product">
+          <div class="header">
+            Sản phẩm cùng loại
+          </div>
+          <hr/>
+          <div class="related-product-list">
+            <div v-for="(item, index) in relatedItems" :key="index" @click="showDetail(item.product_id)" class="slide-item">
+              <div class="name-item">
+                  {{ item.product_name }}
+              </div>
+              <div class="img-item">
+                  <img :src="item.imageUrl"/>
+              </div>
+              <div class="original-price-item">
+                  {{ item.product_original_price }}
+              </div>
+              <div class="sale-off-price-item">
+                  {{ item.product_sale_price }}
+              </div>
+            </div>
+          </div>
         </div>
     </div>
   </div>
 </template>
 
 <script>
-import {ref, onMounted} from 'vue';
+import {ref, onMounted, getCurrentInstance} from 'vue';
 import { useBaseDetail } from '../base/baseDetail.js';
 import productApi from '@/apis/productApi.js';
 import { useRoute } from 'vue-router';
@@ -37,11 +74,94 @@ export default {
     // gọi base composable
     const baseDetail = useBaseDetail(productApi);
     const route = useRoute();
+    const { proxy } = getCurrentInstance();
 
-    const product = ref({});
-
+    const product = ref({
+      product_id: Math.random(),
+      product_name: proxy.$pl.pTitle,
+      imageUrl: proxy.$pl.pImage,
+      product_original_price: proxy.$pl.pOPrice,
+      product_sale_price: proxy.$pl.pSPrice,
+      saleOffPercent: proxy.$pl.pPercent,
+      product_description: proxy.$pl.pParagraph,
+      product_specifies: 'thong so ' + proxy.$pl.pParagraph
+    });
+    var relatedItems = [
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      },
+      {
+          product_id: Math.random(),
+          product_name: proxy.$pl.pTitle,
+          imageUrl: proxy.$pl.pImage,
+          product_original_price: proxy.$pl.pOPrice,
+          product_sale_price: proxy.$pl.pSPrice,
+          saleOffPercent: proxy.$pl.pPercent
+      }
+    ];
     onMounted(async () =>  {
-      product.value = await baseDetail.loadDetail(route.params.id);
+      // product.value = await baseDetail.loadDetail(route.params.id);
     });
     const activeTab = ref(true);
     const setActiveTab = (tab) => {
@@ -51,7 +171,8 @@ export default {
         product,
         activeTab,
         setActiveTab,
-        ...baseDetail
+        ...baseDetail,
+        relatedItems,
     }
   }
 };
@@ -66,9 +187,10 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   .product-detail-container{
-    width: 1000px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 10% 0;
     background-color: #252525;
     padding: 20px;
     color: white;
@@ -121,7 +243,76 @@ export default {
             }
         }
     }
-    
+    .related-product{
+      .header{
+        font-size: 24px;
+      }
+      .related-product-list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .slide-item{
+            display: flex;
+            width: calc(25% - 10px);
+            position: relative;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 50px;
+            cursor: pointer;
+            .name-item{
+                background-color: #ffc107;
+                color: black;
+                text-align: center;
+                font-size: 12px;
+                width: 100%;
+                line-height: 30px;
+            }
+            .img-item{
+                height: 60%;
+                width: 100%;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+            .original-price-item{
+                color: gray;
+            }
+            .sale-off-price-item{
+                color: red;
+            }
+            .item-action{
+                display: flex;
+                .edit-item-btn{
+                    flex: 0 40%;
+                    max-width: 40%;
+                    margin-right: 10px;
+                    background-color: yellow;
+                    color: black;
+                    padding: 5px;
+                    width: auto;
+                    height: auto;
+                }
+                .edit-item-btn:hover{
+                    animation: shake 0.3s ease-in-out; /* Thêm animation shake */
+                }
+                .delete-item-btn{
+                    flex: 0 40%;
+                    max-width: 40%;
+                    background-color: red;
+                    color: white;
+                    padding: 5px;
+                    width: auto;
+                    height: auto;
+                }
+                .delete-item-btn:hover{
+                    animation: shake 0.3s ease-in-out; /* Thêm animation shake */
+                }
+            }
+        }
+      }
+    }
   }
   /* Style cho ô input */
   .styled-input {
@@ -153,10 +344,56 @@ export default {
   display: flex;
 }
 .product-image {
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  .product-image-details{
+    display: flex;
+    width: 100%;
+    flex: 1;
+    justify-content: space-between;
+    margin-top: 8px;
+    .detail-item{
+      width: 32%;
+    }
+  }
 }
 
 .product-image img {
   max-width: 100%;
+}
+.buy-container {
+  display: flex;
+  width: 500px;
+  padding: 20px;
+  justify-content: flex-end;
+}
+
+.input-section,
+.button-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  padding: 10px;
+  margin: 0 10px;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+
+.buy-button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buy-button:hover {
+  background: linear-gradient(135deg, #feb47b, #ff7e5f);
 }
 </style>
