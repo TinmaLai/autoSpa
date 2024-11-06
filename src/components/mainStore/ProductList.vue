@@ -320,9 +320,11 @@ export default {
             }
             .original-price-item{
                 color: gray;
+                text-decoration: line-through;
             }
             .sale-off-price-item{
                 color: red;
+                font-size: 18px;
             }
             .item-action{
                 display: flex;

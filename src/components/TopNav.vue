@@ -1,8 +1,8 @@
 <template>
   <div class="top-nav">
-    <div class="logo-area">
+    <router-link class="logo-area" to="/">
       <img class="logo" src="@/assets/meguiarsLogo.png"/>
-    </div>
+    </router-link>
     <div class="top-nav-right">
       <div class="support-contact">
         <div class="telephone-icon"></div>
@@ -12,11 +12,11 @@
         </div>
       </div>
       <div class="navigator">
-        <div class="nav-item">SẢN PHẨM</div>
-        <div class="nav-item">TIN TỨC</div>
-        <div class="nav-item">ĐẠI LÝ</div>
-        <div class="nav-item">CHÍNH SÁCH</div>
-        <div class="nav-item">LIÊN HỆ</div>
+        <router-link to="/" class="nav-item">SẢN PHẨM</router-link>
+        <router-link to="/blogs" class="nav-item">TIN TỨC</router-link>
+        <router-link class="nav-item">ĐẠI LÝ</router-link>
+        <router-link class="nav-item">CHÍNH SÁCH</router-link>
+        <router-link class="nav-item">LIÊN HỆ</router-link>
       </div>
     </div>
   </div>
@@ -86,6 +86,10 @@ export default {
     color: white;
     gap: 20px;
     font-weight: 550;
+    .nav-item{
+      color: white;
+      text-decoration: unset;
+    }
   }
 }
 </style>

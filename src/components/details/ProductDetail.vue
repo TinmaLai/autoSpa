@@ -43,19 +43,20 @@
           </div>
           <hr/>
           <div class="related-product-list">
-            <div v-for="(item, index) in relatedItems" :key="index" @click="showDetail(item.product_id)" class="slide-item">
-              <div class="name-item">
-                  {{ item.product_name }}
-              </div>
+            <div v-for="(item, index) in relatedItems" :key="index" @click="showDetail(item.product_id)" class="item" @mouseover="idHover = item.product_id" @mouseleave="idHover = null">
+              <div class="overlay" :class="{ 'opacity-1': idHover === item.product_id, 'opacity-0': idHover !== item.product_id }"></div>
               <div class="img-item">
-                  <img :src="item.imageUrl"/>
-              </div>
-              <div class="original-price-item">
-                  {{ item.product_original_price }}
-              </div>
-              <div class="sale-off-price-item">
-                  {{ item.product_sale_price }}
-              </div>
+                <img :src="item.imageUrl"/>
+                </div>
+                <div class="name-item">
+                    {{ item.product_name }}
+                </div>
+                <div class="original-price-item">
+                    {{ item.product_original_price }}
+                </div>
+                <div class="sale-off-price-item">
+                    {{ item.product_sale_price }}
+                </div>
             </div>
           </div>
         </div>
@@ -68,13 +69,20 @@ import {ref, onMounted, getCurrentInstance} from 'vue';
 import { useBaseDetail } from '../base/baseDetail.js';
 import productApi from '@/apis/productApi.js';
 import { useRoute } from 'vue-router';
+import FooterPage from '@/components/FooterPage.vue';
+import  {useBaseList} from '../base/baseList.js';
 
 export default {
+  components: {
+    FooterPage
+  },
   setup(){
     // gọi base composable
     const baseDetail = useBaseDetail(productApi);
+    const baseList = useBaseList(productApi); 
     const route = useRoute();
     const { proxy } = getCurrentInstance();
+    const idHover = ref(null);
 
     const product = ref({
       product_id: Math.random(),
@@ -173,6 +181,8 @@ export default {
         setActiveTab,
         ...baseDetail,
         relatedItems,
+        idHover,
+        ...baseList,
     }
   }
 };
@@ -190,7 +200,7 @@ export default {
   .product-detail-container{
     max-width: 1200px;
     width: 100%;
-    margin: 10% 0;
+    margin: 10% 0 0 0;
     background-color: #252525;
     padding: 20px;
     color: white;
@@ -251,25 +261,38 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        .slide-item{
+        .item{
             display: flex;
-            width: calc(25% - 10px);
-            position: relative;
+            flex: 0 0 24.5%;
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            margin-bottom: 50px;
+            position: relative;
             cursor: pointer;
-            .name-item{
-                background-color: #ffc107;
-                color: black;
-                text-align: center;
-                font-size: 12px;
+            margin-bottom: 8px;
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
-                line-height: 30px;
+                height: 100%;
+                box-shadow: 
+                inset 0 0 15px rgba(255, 80, 0, 1),    /* Lớp cam đậm */
+                inset 0 0 30px rgba(255, 120, 0, 0.9), /* Lớp cam sáng hơn */
+                inset 0 0 50px rgba(255, 180, 0, 0.7), /* Lớp vàng mạnh hơn */
+                inset 0 0 80px rgba(255, 255, 0, 0.5); /* Lớp vàng lan tỏa */
+                pointer-events: none; /* Cho phép nhấp vào ảnh mà không bị lớp phủ chặn */
+            }
+            .name-item{
+                color: white;
+                height: 10%;
+                padding: 2px;
+                text-align: center;
+                font-size: 14px;
+                width: 100%;
             }
             .img-item{
-                height: 60%;
+                height: 75%;
                 width: 100%;
                 img{
                     height: 100%;
@@ -278,36 +301,24 @@ export default {
             }
             .original-price-item{
                 color: gray;
+                text-decoration: line-through;
             }
             .sale-off-price-item{
                 color: red;
+                font-size: 18px;
             }
             .item-action{
                 display: flex;
+                gap: 10px;
                 .edit-item-btn{
-                    flex: 0 40%;
-                    max-width: 40%;
-                    margin-right: 10px;
                     background-color: yellow;
-                    color: black;
-                    padding: 5px;
-                    width: auto;
-                    height: auto;
-                }
-                .edit-item-btn:hover{
-                    animation: shake 0.3s ease-in-out; /* Thêm animation shake */
-                }
-                .delete-item-btn{
-                    flex: 0 40%;
-                    max-width: 40%;
-                    background-color: red;
                     color: white;
                     padding: 5px;
-                    width: auto;
-                    height: auto;
                 }
-                .delete-item-btn:hover{
-                    animation: shake 0.3s ease-in-out; /* Thêm animation shake */
+                .delete-item-btn{
+                    background-color: red;
+                    color: black;
+                    padding: 5px;
                 }
             }
         }
@@ -395,5 +406,11 @@ input {
 
 .buy-button:hover {
   background: linear-gradient(135deg, #feb47b, #ff7e5f);
+}
+.opacity-1{
+  opacity: 1;
+}
+.opacity-0{
+  opacity: 0;
 }
 </style>
