@@ -2,75 +2,180 @@
     <div class="blogs">
         <div class="blog-container">
             <!-- Tiêu đề trang -->
-            <div class="news-header">Today's Headlines</div>
+            <div class="news-header">Tin t</div>
 
             <!-- Lưới tin tức -->
             <div class="news-grid">
                 <!-- Tin tức lớn -->
-                <div class="news-item news-item-large">
-                    <img :src="$pl.pImage" alt="Large News Image">
+                <div class="news-item-large">
+                    <img :src="hotBlog.blog_generalImage" alt="Large News Image">
                     <div class="news-content">
-                        <h3 class="news-title">Breaking News: Large Headline</h3>
-                        <p class="news-description">This is a featured story with a bigger image and bolder headline.
+                        <h3 class="news-title">{{hotBlog.blog_title}}</h3>
+                        <p class="news-description">{{hotBlog.blog_description}}
                         </p>
                     </div>
                 </div>
 
                 <!-- Các tin tức nhỏ -->
-                <div class="news-item">
-                    <img :src="$pl.pImage" alt="News Image">
+                <div class="news-item" v-for="(blog) in subHotBlog" :key="blog.blog_id">
+                    <img :src="blog.blog_generalImage" alt="News Image">
                     <div class="news-content">
-                        <h3 class="news-title">News Title 1</h3>
-                        <p class="news-description">A brief summary of the news story.</p>
+                        <h3 class="news-title">{{ blog.blog_title }}</h3>
+                        <p class="news-description">{{blog.blog_description}}</p>
                     </div>
                 </div>
-
-                <div class="news-item">
-                    <img :src="$pl.pImage" alt="News Image">
-                    <div class="news-content">
-                        <h3 class="news-title">News Title 2</h3>
-                        <p class="news-description">A brief summary of the news story.</p>
+            </div>
+            <div class="regular-blog-container">
+                <div class="blog-item" v-for="(blog) in regularBlog" :key="blog.blog_id">
+                    <img :src="blog.blog_generalImage" alt="Hình ảnh blog">
+                    <div class="blog-content">
+                        <h2 class="blog-title">{{blog.blog_title}}</h2>
+                        <p class="blog-description">{{blog.blog_description}}</p>
                     </div>
                 </div>
-
-                <div class="news-item">
-                    <img :src="$pl.pImage" alt="News Image">
-                    <div class="news-content">
-                        <h3 class="news-title">News Title 3</h3>
-                        <p class="news-description">A brief summary of the news story.</p>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <img :src="$pl.pImage" alt="News Image">
-                    <div class="news-content">
-                        <h3 class="news-title">News Title 4</h3>
-                        <p class="news-description">A brief summary of the news story.</p>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <img :src="$pl.pImage" alt="News Image">
-                    <div class="news-content">
-                        <h3 class="news-title">News Title 5</h3>
-                        <p class="news-description">A brief summary of the news story.</p>
-                    </div>
-                </div>
+                <!-- Thêm nhiều blog khác tại đây -->
             </div>
         </div>
     </div>
 </template>
 <script>
+import {getCurrentInstance, computed, ref} from 'vue';
 export default {
-    setup() {
+    setup(props) {
+        const { proxy } = getCurrentInstance();
 
+        var blogs = [
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Hot,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.SubHot,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.SubHot,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.SubHot,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.SubHot,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+            {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Regular,
+                blog_generalImage: proxy.$pl.pImage
+            },
+        ];
+        var hotBlog = computed(() => {
+            return blogs.find(x => x.blog_type == proxy.$cs.BlogType.Hot) || {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Hot,
+                blog_generalImage: proxy.$pl.pImage
+            };
+        });
+        var subHotBlog = computed(() => {
+            return blogs.filter(x => x.blog_type == proxy.$cs.BlogType.SubHot) || {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Hot,
+                blog_generalImage: proxy.$pl.pImage
+            };
+        });
+        var regularBlog = computed(() => {
+            return blogs.filter(x => x.blog_type == proxy.$cs.BlogType.Regular) || {
+                blog_id: Math.random(),
+                blog_title: proxy.$pl.pTitle,
+                blog_description: proxy.$pl.pParagraph,
+                blog_type: proxy.$cs.BlogType.Hot,
+                blog_generalImage: proxy.$pl.pImage
+            };
+        });
+        return {
+            blogs,
+            hotBlog,
+            subHotBlog,
+            regularBlog,
+        }
     }
 }
 </script>
 <style lang="scss">
 /* Tiêu đề của danh sách tin tức */
 .blogs {
-    background-color: black;
     .blog-container{
         max-width: 1200px;
         width: 100%;
@@ -96,32 +201,43 @@ export default {
             grid-column: span 2;
             grid-row: span 2;
             position: relative;
+            max-width: 600px;
+            width: 100%;
+            max-height: 800px;
+            height: 100%;
         }
     
         /* Tin tức nhỏ */
         .news-item {
             position: relative;
-            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+            max-height: 363px;
+            height: 100%;
         }
     
         /* Hình ảnh của mỗi tin tức */
         .news-item img {
             width: 100%;
-            height: 100%;
+            height: 60%;
             object-fit: cover;
         }
     
         /* Nội dung thông tin của tin tức */
         .news-content {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
             color: white;
             width: 100%;
             padding: 10px;
+            height: 30%;
             box-sizing: border-box;
+            overflow: hidden;
+            p{
+                text-overflow: ellipsis;
+                white-space: normal; /* Cho phép văn bản xuống dòng */
+                word-wrap: break-word; /* Ngắt dòng khi cần thiết */
+            }
         }
     
         /* Tiêu đề tin tức */
@@ -136,6 +252,40 @@ export default {
             font-size: 14px;
             margin-top: 5px;
         }
+        .regular-blog-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 16px;
+            .blog-item {
+                display: flex;
+                background-color: #fff;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+            }
+            .blog-item img {
+                width: 150px;
+                height: auto;
+                object-fit: cover;
+            }
+            .blog-content {
+                padding: 10px 15px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .blog-title {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0;
+            }
+            .blog-description {
+                font-size: 14px;
+                color: #666;
+                margin-top: 5px;
+            }
+        }
     }
+    
 }
 </style>
