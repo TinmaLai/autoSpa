@@ -5,6 +5,8 @@ import { VueFinalModal } from 'vue-final-modal';
 import router from './router.js';
 import * as pl from '@/assets/placeHolder.js';
 import * as cs from '@/constants/constants.js';
+import '@/assets/variables.scss'; // Đường dẫn tới file SCSS
+import 'ckeditor5/ckeditor5.css';
 
 const app = createApp(App);
 // Gắn constants vào globalProperties

@@ -14,7 +14,7 @@
       <div class="navigator">
         <router-link to="/" class="nav-item">SẢN PHẨM</router-link>
         <router-link to="/blogs" class="nav-item">TIN TỨC</router-link>
-        <router-link class="nav-item">
+        <router-link to="/services" class="nav-item">
           DỊCH VỤ
           <ul class="service-dropdown-menu">
             <li><a href="#">Dịch Vụ 1</a></li>
@@ -127,7 +127,8 @@ export default {
       }
 
       .service-dropdown-menu li a:hover {
-        background-color: #555;
+        color: #ffc107;
+
       }
     }
     .nav-item:hover .service-dropdown-menu {
