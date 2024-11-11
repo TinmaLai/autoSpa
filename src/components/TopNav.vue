@@ -115,11 +115,15 @@ export default {
         margin-top: 5px;
         width: 300%;
       }
+      .service-dropdown-menu li{
+        line-height: 14px;
+        width: 100%;
+      }
       .service-dropdown-menu li a {
         padding: 15px 20px;
         color: white;
         text-decoration: none;
-        width: 100%;
+        display: block;        
       }
 
       .service-dropdown-menu li a:hover {
