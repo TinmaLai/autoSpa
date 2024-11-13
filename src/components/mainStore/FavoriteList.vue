@@ -172,7 +172,7 @@ export default {
             margin-bottom: 50px;
             cursor: pointer;
             .name-item{
-                background-color: #ffc107;
+                background-color: $secondary-color;
                 color: black;
                 text-align: center;
                 font-size: 12px;

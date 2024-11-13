@@ -42,9 +42,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .footer {
-  background-color: black;
+  background-color: $primary-color;
   color: #fff;
   padding: 20px;
   text-align: center;

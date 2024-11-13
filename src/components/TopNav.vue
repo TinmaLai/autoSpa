@@ -40,7 +40,7 @@ export default {
   width: 100vw;
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 2;
   box-shadow: 0 0 10px 2px rgba(169, 169, 169, 0.6);  /* Ánh sáng tỏa ra màu bạc */
 }
 .logo-area{
@@ -106,9 +106,9 @@ export default {
         list-style-type: none;
         position: absolute;
         top: 76%;
-        border-top: 1px solid #ffc107;
+        border-top: 1px solid $secondary-color;
         left: 0;
-        background-color: black;
+        background-color: $primary-color;
         color: white;
         display: none;
         padding: 0 16px;
@@ -127,7 +127,7 @@ export default {
       }
 
       .service-dropdown-menu li a:hover {
-        color: #ffc107;
+        color: $secondary-color;
 
       }
     }
@@ -135,7 +135,7 @@ export default {
       display: block;
     }
     .nav-item:hover{
-      color: #ffc107;
+      color: $secondary-color;
     }
   }
 }
