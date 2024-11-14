@@ -6,7 +6,7 @@ import router from './router.js';
 import * as pl from '@/assets/placeHolder.js';
 import * as cs from '@/constants/constants.js';
 import 'ckeditor5/ckeditor5.css';
-import store from './store';
+import store from '@/store.js';
 
 const app = createApp(App);
 // Gắn constants vào globalProperties

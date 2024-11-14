@@ -1,8 +1,8 @@
 <template>
-    <div class="cart-modal">
+    <div class="cart-modal" v-if="isShowCart" :class="[{'slide-out' : isShowCart},{'slide-in' : !isShowCart}]">
         <div class="modal-header">
             <h2 class="modal-title">GIỎ HÀNG</h2>
-            <button class="close-btn">&times;</button>
+            <button @click="hideCartSide" class="close-btn">&times;</button>
         </div>
         <div class="product-list">
             <div class="product">
@@ -26,20 +26,38 @@
             <div class="terms">
                 <input type="checkbox" id="terms-checkbox">
                 <label for="terms-checkbox">
-                    Tôi đồng ý với <a href="#">điều khoản và chính sách</a> của website Carmate
+                    Tôi đồng ý với <a href="#">điều khoản và chính sách</a> của website Branding
                 </label>
             </div>
-            <button class="btn btn-outline">XEM GIỎ HÀNG</button>
-            <button class="btn btn-primary">THANH TOÁN</button>
+            <button class="btn btn-outline">
+                <div class="btn-overlay"></div>
+                <span>XEM GIỎ HÀNG</span>
+            </button>
+            <button class="btn btn-primary">
+                <div class="btn-overlay"></div>
+                <span>THANH TOÁN</span>
+            </button>
         </div>
     </div>
-    <div class="cart-overlay"></div>
+    <div class="cart-overlay" v-if="isShowCart"></div>
 </template>
 <script>
+import { useStore } from 'vuex';
+import {computed} from 'vue';
+
 export default {
     setup() {
+        const store = useStore();
+        const isShowCart = computed(() => store.getters.getIsShowCart);
 
-    }
+        function hideCartSide(){
+            store.commit('updateIsShowCart', false);
+        }
+        return{
+            hideCartSide,
+            isShowCart
+        }
+    },
 }
 </script>
 <style lang="scss">
@@ -56,7 +74,12 @@ export default {
     // display: none;
 
 }
-
+.slide-out{
+    animation: modalSlideOut 0.3s forwards;
+}
+.slide-in{
+    animation: modalSlideIn 0.3s forwards;
+}
 .cart-modal {
     background-color: white;
     height: 100vh;
@@ -66,11 +89,10 @@ export default {
     flex-direction: column;
     position: fixed;
     height: 100%;
-    right: 0;
     top: 0;
     z-index: 4;
-
     // display: none;
+    
     .modal {
         background-color: white;
         width: 100%;
@@ -89,7 +111,7 @@ export default {
         border-bottom: 1px solid #e0e0e0;
         padding-bottom: 10px;
         margin-bottom: 20px;
-        background-color: black;
+        // background-color: black;
         margin: -20px -20px 20px -20px;
         padding: 15px 20px;
     }
@@ -97,7 +119,7 @@ export default {
     .modal-title {
         font-size: 18px;
         font-weight: bold;
-        color: white;
+        color: black;
     }
 
     .close-btn {
@@ -105,7 +127,7 @@ export default {
         border: none;
         font-size: 20px;
         cursor: pointer;
-        color: white;
+        color: black;
     }
 
     .product-list {
@@ -116,7 +138,7 @@ export default {
         .product {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 20px;
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -201,54 +223,51 @@ export default {
         font-weight: bold;
         cursor: pointer;
     }
-
+    
     // linear-gradient(-45deg, #c91f28 50%, transparent 0)
     .btn-outline {
         background: white;
         border: 1px solid #ee4d2d;
-        color: #ee4d2d;
         position: relative;
-        transition: color 1s ease;
-        z-index: 2;
-    }
 
-    // .btn-outline::after {
-    //     content: "";
-    //     /* Chắc chắn rằng pseudo-element sẽ được tạo ra */
-    //     position: absolute;
-    //     /* Để định vị nó trong phần tử chứa */
-    //     width: 20px;
-    //     /* Chiều rộng của hình vuông */
-    //     height: 20px;
-    //     /* Chiều cao của hình vuông */
-    //     background-color: red;
-    //     /* Màu nền của hình vuông */
-    //     bottom: 0;
-    //     /* Vị trí bắt đầu từ trên cùng */
-    //     right: 0;
-    //     background: linear-gradient(-45deg, #c91f28 50%, transparent 0);
-    // }
-    .btn-outline::after{
-        content: "XEM GIỎ HÀNG";
+    }
+    .btn-outline span{
+        color: #ee4d2d;
+        z-index: 32424;
+        position: relative;
+    }
+    .btn-outline::after {
+        content: "";
+        /* Chắc chắn rằng pseudo-element sẽ được tạo ra */
+        position: absolute;
+        /* Để định vị nó trong phần tử chứa */
+        width: 20px;
+        /* Chiều rộng của hình vuông */
+        height: 20px;
+        /* Chiều cao của hình vuông */
+        background-color: red;
+        /* Màu nền của hình vuông */
+        bottom: -1px;
+        /* Vị trí bắt đầu từ trên cùng */
+        right: 0;
+        background: linear-gradient(-45deg, #c91f28 50%, transparent 0);
+    }
+    .btn-overlay{
+        background: linear-gradient(-45deg, #c91f28 90%, transparent 0);
         position: absolute;
         top: 0;
-        right: 0; /* Đặt ngoài cùng bên phải */
-        width: 100%; /* Kích thước phủ sẽ là 100% chiều rộng */
+        right: 0; 
+        width: 0%; 
         height: 100%;
-        background-color: red;
-        animation: slideIn 0.5s forwards;
         z-index: 1;
-        display: none;
-        transition: left 0.5s ease;
+    }
+    .btn-outline:hover .btn-overlay{
+        animation: slideIn 0.5s forwards;
+    }
+    .btn-outline:hover span{
         color: white;
-        padding: 10px;
-
     }
     
-    .btn-outline:hover::after{
-        display: block;
-    }
-
     .btn-primary {
         background-color: #ffd700;
         color: black;
@@ -271,16 +290,50 @@ export default {
         right: 0;
         background: linear-gradient(-45deg, #c91f28 50%, transparent 0);
     }
+    .btn-primary span{
+        color: black;
+        z-index: 32424;
+        position: relative;
+    }
+    .btn-primary:hover .btn-overlay{
+        animation: slideIn 0.5s forwards;
+    }
+    .btn-primary:hover span{
+        color: white;
+    }
 
     @keyframes slideIn {
-        from {
+        0% {
             width: 0%;
             /* Bắt đầu ngoài phải */
         }
 
-        to {
-            width: 100%;
+        10% {
+            z-index: 1;
+            background: linear-gradient(-45deg, #c91f28 90%, transparent 0);
             /* Di chuyển sang phủ đầy */
+        }
+        100% {
+            width: 100%;
+            z-index: 1;
+            background: linear-gradient(-45deg, #c91f28 100%, transparent 0);
+            /* Di chuyển sang phủ đầy */
+        }
+    }
+    @keyframes modalSlideOut {
+        from {
+            right: -100%;
+        }
+        to{
+            right: 0;
+        }
+    }
+    @keyframes modalSlideIn {
+        from {
+            right: 0;
+        }
+        to{
+            right: -100%;
         }
     }
 }

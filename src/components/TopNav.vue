@@ -1,7 +1,7 @@
 <template>
   <div class="top-nav">
     <router-link class="logo-area" to="/">
-      <img class="logo" src="@/assets/meguiarsLogo.png"/>
+      <img class="logo" src="@/assets/meguiarsLogo.png" />
     </router-link>
     <div class="top-nav-right">
       <div class="support-contact">
@@ -22,14 +22,25 @@
             <li><a href="#">Dịch Vụ 3</a></li>
           </ul>
         </router-link>
-        <router-link class="nav-item">CHÍNH SÁCH</router-link>
         <router-link class="nav-item">LIÊN HỆ</router-link>
+        <a @click="showCartSide" class="nav-item">GIỎ HÀNG</a>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { useStore } from 'vuex';
 export default {
+  setup() {
+    const store = useStore();
+
+    function showCartSide() {
+      store.commit('updateIsShowCart', true);
+    }
+    return {
+      showCartSide,
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -41,13 +52,16 @@ export default {
   position: fixed;
   top: 0;
   z-index: 2;
-  box-shadow: 0 0 10px 2px rgba(169, 169, 169, 0.6);  /* Ánh sáng tỏa ra màu bạc */
+  box-shadow: 0 0 10px 2px rgba(169, 169, 169, 0.6);
+  /* Ánh sáng tỏa ra màu bạc */
 }
-.logo-area{
+
+.logo-area {
   position: absolute;
   left: 23%;
 }
-.top-nav-right{
+
+.top-nav-right {
   display: flex;
   flex-direction: column;
   z-index: 1;
@@ -58,10 +72,12 @@ export default {
   justify-content: space-between;
   max-height: 90px;
   height: 100%;
-  .support-contact{
+
+  .support-contact {
     display: flex;
     align-self: flex-end;
-    .telephone-icon{
+
+    .telephone-icon {
       background-color: yellow;
       width: 35px;
       height: 35px;
@@ -69,39 +85,49 @@ export default {
       position: relative;
       margin-right: 16px;
     }
-    .telephone-icon:before{
+
+    .telephone-icon:before {
       content: "";
       width: 25px;
       height: 25px;
       display: block;
       position: absolute;
-      background-image: url('@/assets/phone-icon.png'); /* Đường dẫn đến ảnh */
-      background-size: cover; /* Để ảnh vừa với kích thước */
-      margin-right: 16px; /* Khoảng cách giữa ảnh và nội dung */
+      background-image: url('@/assets/phone-icon.png');
+      /* Đường dẫn đến ảnh */
+      background-size: cover;
+      /* Để ảnh vừa với kích thước */
+      margin-right: 16px;
+      /* Khoảng cách giữa ảnh và nội dung */
       left: 5px;
       bottom: 5px;
     }
-    .support-info{
+
+    .support-info {
       display: flex;
       flex-direction: column;
     }
-    .support-info div{
+
+    .support-info div {
       color: white;
     }
-    .support-info > *:last-child{
+
+    .support-info>*:last-child {
       color: yellow;
     }
   }
-  .navigator{
+
+  .navigator {
     display: flex;
     color: white;
     gap: 20px;
     font-weight: 550;
-    .nav-item{
+
+    .nav-item {
       color: white;
       text-decoration: unset;
       position: relative;
       padding-bottom: 16px;
+      cursor: pointer;
       .service-dropdown-menu {
         list-style-type: none;
         position: absolute;
@@ -115,15 +141,17 @@ export default {
         margin-top: 5px;
         width: 300%;
       }
-      .service-dropdown-menu li{
+
+      .service-dropdown-menu li {
         line-height: 14px;
         width: 100%;
       }
+
       .service-dropdown-menu li a {
         padding: 15px 20px;
         color: white;
         text-decoration: none;
-        display: block;        
+        display: block;
       }
 
       .service-dropdown-menu li a:hover {
@@ -131,10 +159,12 @@ export default {
 
       }
     }
+
     .nav-item:hover .service-dropdown-menu {
       display: block;
     }
-    .nav-item:hover{
+
+    .nav-item:hover {
       color: $secondary-color;
     }
   }
