@@ -35,7 +35,7 @@
             </button>
             <button class="btn btn-primary">
                 <div class="btn-overlay"></div>
-                <span>THANH TOÁN</span>
+                <span><router-link to="/payment-info">THANH TOÁN</router-link></span>
             </button>
         </div>
     </div>
@@ -294,6 +294,7 @@ export default {
         color: black;
         z-index: 32424;
         position: relative;
+        text-decoration: unset;
     }
     .btn-primary:hover .btn-overlay{
         animation: slideIn 0.5s forwards;

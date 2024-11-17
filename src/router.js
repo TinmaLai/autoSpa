@@ -22,7 +22,11 @@ const routes = [
     name: 'serviceList',
     component: () => import('@/components/services/ServiceList.vue'),
   },
-  
+  {
+    path: '/payment-info',
+    name: 'paymentInfo',
+    component: () => import('@/components/payments/PaymentInfo.vue'),
+  },
 ];
 
 const router = createRouter({
